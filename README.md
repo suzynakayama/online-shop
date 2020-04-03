@@ -1,3 +1,13 @@
+## Online Store Project
+
+Project created following along Udemy Course: [Complete React Developer in 2020 (w/ Redux, Hooks, GraphQL)](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/)
+
+But with some changes to meet my coding and personal style.
+
+Technologies: React, React Hooks, Redux, SCSS, Firebase, GraphQL, and more.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

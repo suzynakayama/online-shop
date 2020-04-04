@@ -1,0 +1,19 @@
+:root {
+	--clr-light: #fff;
+	--clr-dark: #000;
+	--clr-accent: #3a3a3a;
+
+	--fs-h1: 4rem;
+	--fs-h2: 3.5rem;
+	--fs-h3: 2.75rem;
+	--fs-h4: 2.5rem;
+	--fs-h5: 1.8rem;
+	--fs-body: 1rem;
+}
+
+body {
+	margin: 0;
+	font-family: "Baloo Thambi 2", cursive;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

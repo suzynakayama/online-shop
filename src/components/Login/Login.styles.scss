@@ -1,9 +1,14 @@
 .login {
-	width: 30vw;
+	width: 23vw;
 	display: flex;
 	flex-direction: column;
 
 	.login__title {
 		margin: 10px 0;
+	}
+
+	.buttons {
+		display: flex;
+		justify-content: space-between;
 	}
 }

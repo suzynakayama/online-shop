@@ -11,6 +11,10 @@
 	--fs-body: 1rem;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 	padding: 20px 60px;

@@ -13,7 +13,13 @@
 
 body {
 	margin: 0;
+	padding: 20px 60px;
 	font-family: "Baloo Thambi 2", cursive;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	text-decoration: none;
+	color: var(--clr-dark);
 }

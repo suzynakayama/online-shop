@@ -5,40 +5,32 @@ import HomePage from "./pages/HomePage/HomePage";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import Header from "./components/Header/Header";
 import LoginSignup from "./pages/LoginSignup/LoginSignup";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 const App = () => {
 	const [currentUser, setCurrentUser] = useState(null);
 
 	useEffect(() => {
-		const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-			setCurrentUser(user);
-			console.log(currentUser);
+		const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+			if (userAuth) {
+				const userRef = await createUserProfileDocument(userAuth);
+
+				// get back first state of that data (snapshot)
+				userRef.onSnapshot((snapShot) => {
+					setCurrentUser({
+						id: snapShot.id,
+						...snapShot.data(),
+					});
+				});
+			} else {
+				// set current user to null
+				setCurrentUser(userAuth);
+			}
 		});
 		return () => {
 			unsubscribeFromAuth();
 		};
 	}, [currentUser]);
-
-	// useEffect(() => {
-	// 	const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-	// 		if (userAuth) {
-	// 			const userRef = await createUserProfileDocument(userAuth);
-	// 			userRef.onSnapshot((snapShot) => {
-	// 				setUser({
-	// 					id: snapShot.id,
-	// 					...snapShot.data(),
-	// 				});
-	// 			});
-	// 		} else {
-	// 			setUser(userAuth);
-	// 			console.log(user);
-	// 		}
-	// 	});
-	// 	return () => {
-	// 		unsubscribeFromAuth();
-	// 	};
-	// }, [user]);
 
 	return (
 		<div>

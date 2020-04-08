@@ -6,6 +6,9 @@ import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import CartIcon from "../CartIcon/CartIcon";
 import CartDropdown from "../CartDropdown/CartDropdown";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "../../redux/user/userSelector";
+import { selectCartHidden } from "../../redux/cart/cartSelectors";
 
 const Header = ({ currentUser, hidden }) => (
 	<div className="header">
@@ -35,9 +38,9 @@ const Header = ({ currentUser, hidden }) => (
 );
 
 // function will get the user state from store and return as props to the header
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-	currentUser,
-	hidden,
+const mapStateToProps = createStructuredSelector({
+	currentUser: selectCurrentUser,
+	hidden: selectCartHidden,
 });
 
 // HOC that gets 2 functions (mapStateToProps and mapDispatchToProps)

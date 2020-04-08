@@ -4,6 +4,7 @@ import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 import { connect } from "react-redux";
 import { toggleCartHidden } from "../../redux/cart/cartActions";
 import { selectCartItemsCount } from "../../redux/cart/cartSelectors";
+import { createStructuredSelector } from "reselect";
 
 const CartIcon = ({ toggleCartHidden, itemCount }) => {
 	return (
@@ -15,8 +16,8 @@ const CartIcon = ({ toggleCartHidden, itemCount }) => {
 };
 
 // selector, pull slice of state and compute a new value based on the state. When state changes, it will be reloaded and repaint the DOM. We will use a library called Reselect to memoize the slice of state we are using here and only repaints the DOM if it changes.
-const mapStateToProps = (state) => ({
-	itemCount: selectCartItemsCount(state),
+const mapStateToProps = createStructuredSelector({
+	itemCount: selectCartItemsCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({

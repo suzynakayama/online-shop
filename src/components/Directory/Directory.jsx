@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import DirectoryItem from "../DirectoryItem/DirectoryItem";
-import SECTIONS_DATA from "../../data/sections";
+import { connect } from "react-redux";
 import "./Directory.styles.scss";
+import { selectDirectorySections } from "../../redux/directory/DirectorySelectors";
+import { createStructuredSelector } from "reselect";
 
-const Directory = () => {
-	const [sections, setSections] = useState(SECTIONS_DATA);
-
+const Directory = ({ sections }) => {
 	return (
 		<div className="directory">
 			{sections.map(({ id, ...otherSectionProps }) => (
@@ -15,4 +15,8 @@ const Directory = () => {
 	);
 };
 
-export default Directory;
+const mapStateToProps = createStructuredSelector({
+	sections: selectDirectorySections,
+});
+
+export default connect(mapStateToProps)(Directory);

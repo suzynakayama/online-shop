@@ -1,5 +1,7 @@
 ## Online Store Project
 
+Check it out [live here](https://sn-myshop.herokuapp.com/)
+
 Project created following along Udemy Course: [Complete React Developer in 2020 (w/ Redux, Hooks, GraphQL)](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/)
 
 But with some changes to meet my coding and personal style.

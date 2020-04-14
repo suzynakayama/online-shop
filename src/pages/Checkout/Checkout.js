@@ -8,38 +8,45 @@ import {
 } from "../../redux/cart/cartSelectors";
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
 import StripeButton from "../../components/StripeButton/StripeButton";
+import {
+	CheckoutContainer,
+	CheckoutHeader,
+	CheckoutHeaderBlock,
+	CheckoutTotal,
+	CheckoutTestWarning,
+} from "./Checkout.styles";
 
 const CheckoutPage = ({ cartItems, total }) => {
 	return (
-		<div className="checkout">
-			<div className="checkout__header">
-				<div className="checkout__header--block">
+		<CheckoutContainer>
+			<CheckoutHeader>
+				<CheckoutHeaderBlock>
 					<span>Product</span>
-				</div>
-				<div className="checkout__header--block">
+				</CheckoutHeaderBlock>
+				<CheckoutHeaderBlock>
 					<span>Description</span>
-				</div>
-				<div className="checkout__header--block">
+				</CheckoutHeaderBlock>
+				<CheckoutHeaderBlock>
 					<span>Quantity</span>
-				</div>
-				<div className="checkout__header--block">
+				</CheckoutHeaderBlock>
+				<CheckoutHeaderBlock>
 					<span>Price</span>
-				</div>
-				<div className="checkout__header--block">
+				</CheckoutHeaderBlock>
+				<CheckoutHeaderBlock>
 					<span>Remove</span>
-				</div>
-			</div>
+				</CheckoutHeaderBlock>
+			</CheckoutHeader>
 			{cartItems.map((item) => (
 				<CheckoutItem key={item.id} item={item} />
 			))}
-			<div className="checkout__total">TOTAL: $ {total}</div>
-			<div className="test-warning">
+			<CheckoutTotal>TOTAL: $ {total}</CheckoutTotal>
+			<CheckoutTestWarning>
 				*Please use the following test credit card for payments*
 				<br />
 				4242 4242 4242 4242 - Exp: 01/21 - CVV: 123
-			</div>
+			</CheckoutTestWarning>
 			<StripeButton price={total} />
-		</div>
+		</CheckoutContainer>
 	);
 };
 
@@ -49,3 +56,37 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export default connect(mapStateToProps)(CheckoutPage);
+
+// const CheckoutPage = ({ cartItems, total }) => {
+// 	return (
+// 		<div className="checkout">
+// 			<div className="checkout__header">
+// 				<div className="checkout__header--block">
+// 					<span>Product</span>
+// 				</div>
+// 				<div className="checkout__header--block">
+// 					<span>Description</span>
+// 				</div>
+// 				<div className="checkout__header--block">
+// 					<span>Quantity</span>
+// 				</div>
+// 				<div className="checkout__header--block">
+// 					<span>Price</span>
+// 				</div>
+// 				<div className="checkout__header--block">
+// 					<span>Remove</span>
+// 				</div>
+// 			</div>
+// 			{cartItems.map((item) => (
+// 				<CheckoutItem key={item.id} item={item} />
+// 			))}
+// 			<div className="checkout__total">TOTAL: $ {total}</div>
+// 			<div className="test-warning">
+// 				*Please use the following test credit card for payments*
+// 				<br />
+// 				4242 4242 4242 4242 - Exp: 01/21 - CVV: 123
+// 			</div>
+// 			<StripeButton price={total} />
+// 		</div>
+// 	);
+// };

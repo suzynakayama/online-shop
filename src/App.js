@@ -18,10 +18,12 @@ class App extends React.Component {
 	componentDidMount() {
 		const { setCurrentUser } = this.props;
 
+		// every time our auth state change we set the current user on our state
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
 			if (userAuth) {
 				const userRef = await createUserProfileDocument(userAuth);
 
+				// every time the snapShop changes we set the user
 				userRef.onSnapshot((snapShot) => {
 					setCurrentUser({
 						id: snapShot.id,

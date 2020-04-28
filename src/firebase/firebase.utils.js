@@ -62,7 +62,7 @@ export const addCollectionAndDocuments = async (
 };
 
 // gets the snapshot object and convert to the way we need the data to be and add the routing property
-export const convertColletionsSnapshotToMap = (collections) => {
+export const convertCollectionsSnapshotToMap = (collections) => {
 	const transformedCollection = collections.docs.map((doc) => {
 		const { title, items } = doc.data();
 		return {

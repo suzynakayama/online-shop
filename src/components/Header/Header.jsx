@@ -9,36 +9,37 @@ import {
 } from "./Header.styles";
 // import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
-import { auth } from "../../firebase/firebase.utils";
+// import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import CartIcon from "../CartIcon/CartIcon";
 import CartDropdown from "../CartDropdown/CartDropdown";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "../../redux/user/userSelector";
 import { selectCartHidden } from "../../redux/cart/cartSelectors";
+import { signOutStart } from "../../redux/user/userActions";
 
-const Header = ({ currentUser, hidden }) => (
-	<HeaderContainer>
-		<LogoContainer to="/">
-			<Logo />
-		</LogoContainer>
-		<OptionsContainer>
-			<OptionLink to="/shop">SHOP</OptionLink>
-			<OptionLink to="/contact">CONTACT</OptionLink>
-			{currentUser ? (
-				// we can, instead of writing a variable with the css and assigning it to 2 styled components, we can use the OptionLink as="div"
-				// and it will become a div with the OptionLink styles
-				// <OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>
-				<OptionLink as="div" onClick={() => auth.signOut()}>
-					SIGN OUT
-				</OptionLink>
-			) : (
-				<OptionLink to="/signin">SIGN IN</OptionLink>
-			)}
-			<CartIcon />
-		</OptionsContainer>
-		{hidden ? null : <CartDropdown />}
-	</HeaderContainer>
+const Header = ({ currentUser, hidden, signOutStart }) => (
+  <HeaderContainer>
+    <LogoContainer to="/">
+      <Logo />
+    </LogoContainer>
+    <OptionsContainer>
+      <OptionLink to="/shop">SHOP</OptionLink>
+      <OptionLink to="/contact">CONTACT</OptionLink>
+      {currentUser ? (
+        // we can, instead of writing a variable with the css and assigning it to 2 styled components, we can use the OptionLink as="div"
+        // and it will become a div with the OptionLink styles
+        // <OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>
+        <OptionLink as="div" onClick={signOutStart}>
+          SIGN OUT
+        </OptionLink>
+      ) : (
+        <OptionLink to="/signin">SIGN IN</OptionLink>
+      )}
+      <CartIcon />
+    </OptionsContainer>
+    {hidden ? null : <CartDropdown />}
+  </HeaderContainer>
 );
 
 // function will get the user state from store and return as props to the header
@@ -47,8 +48,12 @@ const mapStateToProps = createStructuredSelector({
 	hidden: selectCartHidden,
 });
 
+const mapDispatchToProps = dispatch => ({
+	signOutStart: () => dispatch(signOutStart())
+})
+
 // HOC that gets 2 functions (mapStateToProps and mapDispatchToProps)
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
 
 // OLD VERSION USING SCSS
 // const Header = ({ currentUser, hidden }) => (

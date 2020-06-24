@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Signup.styles.scss";
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+// import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import FormInput from "../FormInput/FormInput";
 import CustomButton from "../CustomButton/CustomButton";
 import { connect } from "react-redux";
@@ -20,16 +20,17 @@ const Signup = ({ signUpStart }) => {
       alert("passwords don't match");
       return;
     }
+		console.log(form.email)
+		console.log(form)
+		signUpStart(form.email, form.password, form.displayName);
 
-		signUpStart(form.email, form.password);
+    // try {
+    //   const { user } = await auth.createUserWithEmailAndPassword(
+    //     form.email,
+    //     form.password
+    //   );
 
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        form.email,
-        form.password
-      );
-
-      await createUserProfileDocument(user, { displayName: form.displayName });
+    //   await createUserProfileDocument(user, { displayName: form.displayName });
 
       setForm({
         displayName: "",
@@ -37,9 +38,9 @@ const Signup = ({ signUpStart }) => {
         password: "",
         confirmPassword: "",
       });
-    } catch (err) {
-      console.log(err);
-    }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   const handleChange = (evt) => {
@@ -93,7 +94,7 @@ const Signup = ({ signUpStart }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  signUpStart: (email, password) => dispatch(signUpStart(email, password)),
+  signUpStart: (email, password, name) => dispatch(signUpStart({email, password, name})),
 });
 
 export default connect(null, mapDispatchToProps)(Signup);

@@ -20,27 +20,14 @@ const Signup = ({ signUpStart }) => {
       alert("passwords don't match");
       return;
     }
-		console.log(form.email)
-		console.log(form)
 		signUpStart(form.email, form.password, form.displayName);
 
-    // try {
-    //   const { user } = await auth.createUserWithEmailAndPassword(
-    //     form.email,
-    //     form.password
-    //   );
-
-    //   await createUserProfileDocument(user, { displayName: form.displayName });
-
-      setForm({
-        displayName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-    // } catch (err) {
-    //   console.log(err);
-    // }
+		setForm({
+			displayName: "",
+			email: "",
+			password: "",
+			confirmPassword: "",
+		});
   };
 
   const handleChange = (evt) => {

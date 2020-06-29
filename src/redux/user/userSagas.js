@@ -43,7 +43,6 @@ export function* isUserAuthenticated() {
 }
 
 export function* signUp({ payload: { email, password, name } }) {
-  console.log(email, password, name);
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     yield put(signUpSuccess({ user, additionalData: { name } }));

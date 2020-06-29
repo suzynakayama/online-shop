@@ -27,7 +27,7 @@ const App = ({checkUserSession, currentUser}) => {
 						exact
 						path="/signin"
 						render={() =>
-							this.props.currentUser ? <Redirect to="/" /> : <LoginSignup />
+							currentUser ? <Redirect to="/" /> : <LoginSignup />
 						}
 					/>
 					<Route exact path="/checkout" component={CheckoutPage} />
@@ -35,7 +35,6 @@ const App = ({checkUserSession, currentUser}) => {
 			</div>
 		);
 	}
-}
 
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,

@@ -9,7 +9,7 @@ import {
 
 export function* fetchCollectionsAsync() {
   try {
-    const collectionRef = firestore.collection('collections');            //* get collection ref from firestore
+    const collectionRef = firestore.collection("collections");            //* get collection ref from firestore
     const snapshot = yield collectionRef.get();                           //* get the snapshot
 
     const collectionsMap = yield call(convertCollectionsSnapshotToMap, snapshot);    //! call is a function that takes the function you want to call as the first parameter and the input you want to pass to the function as the second parameter. And because we are yielding this call, it allows us to defer control of this function execution back to the saga middleware. So we yield this call in case it takes longer than we want. The call method is a method that invokes functions.

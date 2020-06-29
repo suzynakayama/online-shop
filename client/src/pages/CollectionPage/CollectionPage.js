@@ -10,6 +10,7 @@ import {
 } from "./CollectionPage.styles";
 
 const CollectionPage = ({ collection }) => {
+	console.log(collection)
 	const { title, items } = collection;
 	return (
 		// <div className="collection-page">

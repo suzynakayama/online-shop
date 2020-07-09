@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { Route } from "react-router-dom";
 // import {
 // 	firestore,
@@ -6,8 +6,14 @@ import { Route } from "react-router-dom";
 // } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import { fetchCollectionsStart } from "../../redux/shop/shopActions";
-import CollectionsOverviewContainer from "../../components/CollectionsOverview/CollectionsOverview.container";
-import CollectionPageContainer from "../CollectionPage/CollectionPage.container";
+// import CollectionsOverviewContainer from "../../components/CollectionsOverview/CollectionsOverview.container";
+// import CollectionPageContainer from "../CollectionPage/CollectionPage.container";
+import Spinner from "../../components/Spinner/Spinner";
+
+const CollectionsOverviewContainer = lazy(() => import("../../components/CollectionsOverview/CollectionsOverview.container"))
+const CollectionPageContainer = lazy(() =>
+  import("../CollectionPage/CollectionPage.container")
+);
 
 const ShopPage = ({ fetchCollectionsStart, match }) => {
 
@@ -17,6 +23,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
 
   return (
     <div className="shop-page">
+      <Suspense fallback={<Spinner/>}>
       <Route
         exact
         path={`${match.path}`}
@@ -25,7 +32,8 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
       <Route
         path={`${match.path}/:collectionId`}
         component={CollectionPageContainer}
-      />
+        />
+      </Suspense>
     </div>
   );
 };

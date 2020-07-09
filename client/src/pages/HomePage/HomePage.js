@@ -5,7 +5,6 @@ import { HomePageContainer, HomePageTitle } from "./HomePage.styles";
 import Footer from "react-myfooter";
 
 const HomePage = () => {
-	console.log(typeof Footer);
 	return (
 		// <div className="homepage">
 		<HomePageContainer>
@@ -13,6 +12,7 @@ const HomePage = () => {
 			{/* <h1 className="homepage__title">MyShop</h1> */}
 			<br />
 			<Directory />
+			<br />
 			<Footer github="https://github.com/suzynakayama" name="Suzy Nakayama" />
 		</HomePageContainer>
 		// </div>

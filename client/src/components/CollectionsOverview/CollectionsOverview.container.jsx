@@ -2,7 +2,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectIsCollectionFetching } from '../../redux/shop/shopSelectors';
-import WithSpinner from '../Spinner/Spinner';
+import WithSpinner from '../WithSpinner/WithSpinner';
 import CollectionsOverview from './CollectionsOverview';
 
 const mapStateToProps = createStructuredSelector({
